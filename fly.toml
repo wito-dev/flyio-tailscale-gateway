@@ -1,36 +1,59 @@
-# fly.toml file generated for vakabus-gateway on 2023-04-12T19:19:13+02:00
+# fly.toml app configuration file generated for home-gateway on 2023-11-20T20:19:31+01:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
-app = "vakabus-gateway"
-kill_signal = "SIGINT"
-kill_timeout = 5
+app = "home-gateway"
 primary_region = "waw"
-processes = []
-
-[env]
-
-[deploy]
-  strategy = "immediate"
+kill_signal = "SIGINT"
+kill_timeout = "5s"
 
 [experimental]
   auto_rollback = true
 
+[build]
+
+[deploy]
+  strategy = "immediate"
+
 
 [[services]]
-  internal_port = 80
   protocol = "tcp"
+  internal_port = 80
+
+  [services.concurrency]
+  type = "connections"
+  hard_limit = 1000
+  soft_limit = 1000
+
   [[services.ports]]
     port = 80
 
 [[services]]
-  internal_port = 443
   protocol = "tcp"
+  internal_port = 443
+
+  [services.concurrency]
+  type = "connections"
+  hard_limit = 1000
+  soft_limit = 1000
+
   [[services.ports]]
     port = 443
 
 [[services]]
-  internal_port = 443
   protocol = "udp"
+  internal_port = 443
+
+  [services.concurrency]
+  type = "connections"
+  hard_limit = 1000
+  soft_limit = 1000
+
   [[services.ports]]
     port = 443
 
-
+[[restart]]
+  policy = "on-failure"
+  retries = 10
+  processes = ["app"]
