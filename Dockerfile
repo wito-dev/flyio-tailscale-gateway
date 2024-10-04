@@ -1,7 +1,7 @@
-FROM docker.io/debian:latest
+FROM docker.io/debian:stable-slim
 
 RUN apt-get update && \
-	apt-get upgrade && \
+	apt-get upgrade -y && \
 	apt-get install -y --no-install-recommends --no-install-suggests \
 	curl \
 	debian-keyring \
