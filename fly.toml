@@ -18,7 +18,9 @@ kill_timeout = "5s"
 
 [env]
   GOGC = 10
-
+  
+[processes]
+  tailscaled=/usr/bin/tailscaled
 
 [[services]]
   protocol = "tcp"
@@ -60,3 +62,4 @@ kill_timeout = "5s"
   policy = "on-failure"
   retries = 10
   processes = ["tailscaled"]
+
