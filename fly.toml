@@ -24,6 +24,7 @@ kill_timeout = "5s"
   tailscaled=/usr/bin/tailscaled
 
 [[services]]
+  processes=["tailscaled"]
   protocol = "tcp"
   internal_port = 80
 
@@ -36,6 +37,7 @@ kill_timeout = "5s"
     port = 80
 
 [[services]]
+  processes=["tailscaled"]
   protocol = "tcp"
   internal_port = 443
 
@@ -48,6 +50,7 @@ kill_timeout = "5s"
     port = 443
 
 [[services]]
+  processes=["tailscaled"]
   protocol = "udp"
   internal_port = 443
 
