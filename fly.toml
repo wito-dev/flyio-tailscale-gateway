@@ -21,7 +21,7 @@ kill_timeout = "5s"
   GOGC = 10
   
 [processes]
-  tailscaled="/usr/bin/tailscaled"
+  tailscaled="/setup.sh"
 
 [[services]]
   processes=["tailscaled"]
